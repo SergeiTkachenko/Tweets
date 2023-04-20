@@ -13,5 +13,5 @@ export const Item = styled.li`
 
   border: 1px solid black;
   border-radius: 10px;
-  background-color: #4c3ec4;
+  background: linear-gradient(114.99deg, #471ca9, #5736a3, #4b2a99);
 `;
