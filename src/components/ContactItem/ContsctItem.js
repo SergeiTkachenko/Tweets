@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Item } from './ContactItem.styled';
 
-export const ContactItem = ({ name, tweets, followers, avatar }) => {
+export const ContactItem = ({ user, tweets, followers, avatar }) => {
   const [isFollow, setIsFollow] = useState(false);
 
   const handleFollowUser = () => {
@@ -12,10 +12,10 @@ export const ContactItem = ({ name, tweets, followers, avatar }) => {
   return (
     <Item>
       <>
-        <img src={avatar} alt={name} />
+        <img src={avatar} alt={user} />
         <div>{tweets} tweets</div>
         <div>{followers} followers</div>
-        <div>{name}</div>
+        <div>{user}</div>
       </>
 
       {!isFollow && <button onClick={handleFollowUser}>follow</button>}
@@ -26,8 +26,8 @@ export const ContactItem = ({ name, tweets, followers, avatar }) => {
 
 ContactItem.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  tweets: PropTypes.number.isRequired,
-  followers: PropTypes.number.isRequired,
+  user: PropTypes.string.isRequired,
+  tweets: PropTypes.string.isRequired,
+  followers: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
 };
