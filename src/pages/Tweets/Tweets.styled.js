@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const LoadMoreButton = styled.button`
+export const BackButton = styled.button`
   padding: 14px 28px;
-  margin: 12px auto 0 auto;
+  margin: 12px auto 12px auto;
   width: 196px;
   height: 50px;
   background: #ebd8ff;

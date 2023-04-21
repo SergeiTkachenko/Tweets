@@ -3,9 +3,9 @@ import { UserItem } from '../UserItem/UserItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredUsers } from 'redux/selectors';
 import { fetchUsers } from 'redux/operations';
-import { LoadMoreButton } from './UserList.Styled';
+import { LoadMoreButton, UsersListStyled } from './UsersList.Styled';
 
-export const UserList = () => {
+export const UsersList = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [allUsers, setAllallUsers] = useState([]);
@@ -31,7 +31,7 @@ export const UserList = () => {
 
   return (
     <div>
-      <ul>
+      <UsersListStyled>
         {visibleUsers.map(({ id, user, followers, avatar, tweets }) => (
           <UserItem
             key={id}
@@ -42,7 +42,7 @@ export const UserList = () => {
             tweets={tweets}
           />
         ))}
-      </ul>
+      </UsersListStyled>
       {users.length > visibleUsers.length && (
         <LoadMoreButton onClick={handleLoadMore}>Load More</LoadMoreButton>
       )}
