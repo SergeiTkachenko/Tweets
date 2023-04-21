@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   FollowButton,
   FollowersStyled,
@@ -16,13 +16,52 @@ import {
 } from './UserItem.styled';
 import logo from 'images/logo.svg';
 import picture from 'images/picture.png';
+import { useDispatch } from 'react-redux';
+import { editUser } from 'redux/operations';
 
-export const ContactItem = ({ user, tweets, followers, avatar }) => {
-  const [isFollow, setIsFollow] = useState(false);
+export const UserItem = ({ userName, tweets, followers, avatar, id }) => {
+  const [isFollow, setIsFollow] = useState(
+    localStorage.getItem(`isFollow_${id}`) === 'true'
+  );
+  const [followersCount, setFollowersCount] = useState(parseInt(followers));
+
+  const dispatch = useDispatch();
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
 
   const handleFollowUser = () => {
-    setIsFollow(!isFollow);
+    setIsFollow(true);
+    const newFollowersCount = followersCount + 1;
+    setFollowersCount(newFollowersCount);
+    dispatch(
+      editUser({
+        id,
+        followers: newFollowersCount,
+        userName,
+      })
+    );
   };
+
+  const handleUnFollowUser = () => {
+    setIsFollow(false);
+    const newFollowersCount = followersCount - 1;
+    setFollowersCount(newFollowersCount);
+    dispatch(
+      editUser({
+        id,
+        followers: newFollowersCount,
+        userName,
+      })
+    );
+  };
+
+  useEffect(() => {
+    localStorage.setItem(`isFollow_${id}`, isFollow);
+  }, [isFollow, id]);
 
   return (
     <Item>
@@ -32,30 +71,34 @@ export const ContactItem = ({ user, tweets, followers, avatar }) => {
         <UserImageWrapper>
           <UserImageLine>
             <UserImageCircle>
-              <UserImg src={avatar} alt={user} />
+              <UserImg src={avatar} alt={userName} />
             </UserImageCircle>
           </UserImageLine>
         </UserImageWrapper>
 
-        <UserStyled>{user}</UserStyled>
-        <TweetsStyled>{tweets} tweets</TweetsStyled>
-        <FollowersStyled>{followers} followers</FollowersStyled>
+        <UserStyled>{userName}</UserStyled>
+        <TweetsStyled>{formatter.format(tweets)} tweets</TweetsStyled>
+        <FollowersStyled>
+          {formatter.format(followersCount)} followers
+        </FollowersStyled>
       </div>
 
       {!isFollow && (
         <FollowButton onClick={handleFollowUser}>follow</FollowButton>
       )}
       {isFollow && (
-        <FollowingButton onClick={handleFollowUser}>following</FollowingButton>
+        <FollowingButton onClick={handleUnFollowUser}>
+          following
+        </FollowingButton>
       )}
     </Item>
   );
 };
 
-ContactItem.propTypes = {
+UserItem.propTypes = {
   id: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired,
-  tweets: PropTypes.string.isRequired,
-  followers: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  tweets: PropTypes.number.isRequired,
+  followers: PropTypes.any,
   avatar: PropTypes.string.isRequired,
 };

@@ -14,3 +14,17 @@ export const fetchUsers = createAsyncThunk(
     }
   }
 );
+
+export const editUser = createAsyncThunk(
+  'users/editUser',
+  async (user, thunkAPI) => {
+    try {
+      const response = await axios.put(`/users/${user.id}`, {
+        ...user,
+      });
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

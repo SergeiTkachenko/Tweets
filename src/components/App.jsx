@@ -1,11 +1,10 @@
 import { Container } from './Container';
 import { GlobalStyle } from './GlobalStyle';
 import { useSelector } from 'react-redux';
-// import { AddForm } from './Form/Form';
-import { UserList } from './ContactsList/UserList';
-// import { ContactFilter } from './ContactsFilter/ContactFilter';
+import { UserList } from './UserList/UserList';
 import { selectError, selectIsLoading } from 'redux/selectors';
 import Spinner from './Spinner/spinner';
+// import { UsersFilter } from './UsersFilter/UsersFilter';
 
 export const App = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -13,8 +12,7 @@ export const App = () => {
 
   return (
     <Container>
-      {/* <AddForm /> */}
-      {/* <ContactFilter /> */}
+      {/* <UsersFilter /> */}
       {isLoading && !error && <Spinner />}
       <UserList />
       <GlobalStyle />

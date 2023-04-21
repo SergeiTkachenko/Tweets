@@ -1,35 +1,29 @@
 import { useEffect, useState } from 'react';
-import { ContactItem } from '../UserItem/UserItem';
+import { UserItem } from '../UserItem/UserItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredContacts } from 'redux/selectors';
+import { selectFilteredUsers } from 'redux/selectors';
 import { fetchUsers } from 'redux/operations';
 import { LoadMoreButton } from './UserList.Styled';
 
 export const UserList = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const [allContacts, setAllContacts] = useState([]);
+  const [allUsers, setAllallUsers] = useState([]);
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  const contacts = useSelector(selectFilteredContacts);
+  const users = useSelector(selectFilteredUsers);
 
   useEffect(() => {
-    setAllContacts(prevContacts => [...prevContacts, ...contacts]);
-  }, [contacts]);
+    setAllallUsers(prevUsers => [...prevUsers, ...users]);
+  }, [users]);
 
   const itemsPerPage = 3;
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const visibleContacts = allContacts.slice(0, endIndex);
-
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
+  const visibleUsers = allUsers.slice(0, endIndex);
 
   const handleLoadMore = () => {
     setPage(page + 1);
@@ -38,18 +32,18 @@ export const UserList = () => {
   return (
     <div>
       <ul>
-        {visibleContacts.map(({ id, user, followers, avatar, tweets }) => (
-          <ContactItem
+        {visibleUsers.map(({ id, user, followers, avatar, tweets }) => (
+          <UserItem
             key={id}
-            user={user}
-            followers={formatter.format(followers)}
+            userName={user}
+            followers={followers}
             id={id}
             avatar={avatar}
-            tweets={formatter.format(tweets)}
+            tweets={tweets}
           />
         ))}
       </ul>
-      {contacts.length > visibleContacts.length && (
+      {users.length > visibleUsers.length && (
         <LoadMoreButton onClick={handleLoadMore}>Load More</LoadMoreButton>
       )}
     </div>
