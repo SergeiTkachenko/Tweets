@@ -5,9 +5,12 @@ export const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
 
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 10px 20px;
 
   font-weight: 600;
-  padding: 5px 10px;
   border-radius: 6px;
   color: black;
   background-color: #3bb4fa;
@@ -17,29 +20,27 @@ export const NavLinkStyled = styled(NavLink)`
     background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media screen and (min-width: 768px) {
-    display: flex;
-    flex-wrap: wrap;
-
-    padding: 10px 20px;
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
-
   &.active {
     color: white;
-    background-color: #3460da;
-    box-shadow: rgba(45, 78, 224, 0.25) 0px 10px 20px 10px,
-      rgba(12, 63, 231, 0.3) 0px 10px 7px -2px;
+    background: linear-gradient(
+      114.99deg,
+      #471ca9 -0.99%,
+      #5736a3 54.28%,
+      #4b2a99 78.99%
+    );
+    box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
   }
 
   &:hover,
   &:focus {
     color: white;
-    background-color: #3460da;
-    box-shadow: rgba(45, 78, 224, 0.25) 0px 10px 20px 10px,
-      rgba(12, 63, 231, 0.3) 0px 10px 7px -2px;
+    background: linear-gradient(
+      114.99deg,
+      #471ca9 -0.99%,
+      #5736a3 54.28%,
+      #4b2a99 78.99%
+    );
+    box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
   }
 `;
 
