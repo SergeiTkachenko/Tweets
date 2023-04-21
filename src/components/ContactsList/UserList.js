@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { ContactItem } from '../ContactItem/ContsctItem';
+import { ContactItem } from '../UserItem/UserItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredContacts } from 'redux/selectors';
 import { fetchUsers } from 'redux/operations';
+import { LoadMoreButton } from './UserList.Styled';
 
-export const ContactList = () => {
+export const UserList = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [allContacts, setAllContacts] = useState([]);
@@ -49,7 +50,7 @@ export const ContactList = () => {
         ))}
       </ul>
       {contacts.length > visibleContacts.length && (
-        <button onClick={handleLoadMore}>Load More</button>
+        <LoadMoreButton onClick={handleLoadMore}>Load More</LoadMoreButton>
       )}
     </div>
   );

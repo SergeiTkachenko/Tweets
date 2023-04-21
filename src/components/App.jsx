@@ -2,7 +2,7 @@ import { Container } from './Container';
 import { GlobalStyle } from './GlobalStyle';
 import { useSelector } from 'react-redux';
 // import { AddForm } from './Form/Form';
-import { ContactList } from './ContactsList/ContactList';
+import { UserList } from './ContactsList/UserList';
 // import { ContactFilter } from './ContactsFilter/ContactFilter';
 import { selectError, selectIsLoading } from 'redux/selectors';
 import Spinner from './Spinner/spinner';
@@ -16,7 +16,7 @@ export const App = () => {
       {/* <AddForm /> */}
       {/* <ContactFilter /> */}
       {isLoading && !error && <Spinner />}
-      <ContactList />
+      <UserList />
       <GlobalStyle />
     </Container>
   );
