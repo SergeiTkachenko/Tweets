@@ -104,4 +104,5 @@ UserItem.propTypes = {
   tweets: PropTypes.number.isRequired,
   followers: PropTypes.any,
   avatar: PropTypes.string.isRequired,
+  followingStatus: PropTypes.bool.isRequired,
 };

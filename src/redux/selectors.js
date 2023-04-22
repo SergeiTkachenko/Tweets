@@ -14,3 +14,7 @@ export const selectFilteredUsers = createSelector(
     return filteredUsers.sort((a, b) => a.user.localeCompare(b.user));
   }
 );
+
+// export const selectSortedUsers = createSelector([selectUsers], users => {
+//   return users.sort((a, b) => a.user.localeCompare(b.user));
+// });

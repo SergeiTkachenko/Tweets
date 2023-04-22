@@ -13,7 +13,6 @@ import { LoadMoreButton } from 'components/ButtonsStyle/Buttons.styled';
 export const UsersList = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const [allUsers, setAllUsers] = useState([]);
   const [selectedOption, setSelectedOption] = useState('Show all');
 
   useEffect(() => {
@@ -21,10 +20,6 @@ export const UsersList = () => {
   }, [dispatch]);
 
   const users = useSelector(selectFilteredUsers);
-
-  useEffect(() => {
-    setAllUsers(prevUsers => [...prevUsers, ...users]);
-  }, [users, allUsers]);
 
   function handleOptionChange(event) {
     const option = event.target.value;
@@ -35,12 +30,14 @@ export const UsersList = () => {
   const itemsPerPage = 3;
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+
   const filteredUsers =
     selectedOption === 'Follow'
       ? users.filter(user => user.followingStatus)
       : selectedOption === 'Followings Show all'
       ? users.filter(user => !user.followingStatus)
       : users;
+
   const visibleUsers = filteredUsers.slice(0, endIndex);
 
   const handleLoadMore = () => {
