@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { UserItem } from '../UserItem/UserItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredUsers } from 'redux/selectors';
+import { selectSortUsers } from 'redux/selectors';
 import { fetchUsers } from 'redux/operations';
 import {
   UsersListStyled,
@@ -23,7 +23,7 @@ export const UsersList = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  const users = useSelector(selectFilteredUsers);
+  const users = useSelector(selectSortUsers);
 
   function handleOptionChange(event) {
     const option = event.target.value;

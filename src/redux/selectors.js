@@ -5,13 +5,13 @@ export const selectIsLoading = state => state.users.isLoading;
 export const selectError = state => state.users.error;
 export const selectFilter = state => state.filter;
 
-export const selectFilteredUsers = createSelector(
+export const selectSortUsers = createSelector(
   [selectUsers, selectFilter],
   users => {
-    const filteredUsers = [...users];
-    if (filteredUsers.length === 0) {
-      return filteredUsers;
+    const sortedUsers = [...users];
+    if (sortedUsers.length === 0) {
+      return sortedUsers;
     }
-    return filteredUsers.sort((a, b) => a.user.localeCompare(b.user));
+    return sortedUsers.sort((a, b) => a.user.localeCompare(b.user));
   }
 );
