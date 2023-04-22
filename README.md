@@ -7,8 +7,8 @@
 - **react** - main
 - **styled-components** - for styling
 - **axios** - to make HTTP requests to the server and get data
+- **createAsyncThunk** - creation of asynchronous actions in Redux
 - **react-router-dom** - for navigation
-- **local-storage** - to store some data locally
 
 ## If you want to try it, follow the link
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   FollowButton,
   FollowersStyled,
@@ -19,10 +19,16 @@ import picture from 'images/picture.png';
 import { useDispatch } from 'react-redux';
 import { editUser } from 'redux/operations';
 
-export const UserItem = ({ userName, tweets, followers, avatar, id }) => {
-  const [isFollow, setIsFollow] = useState(
-    localStorage.getItem(`isFollow_${id}`) === 'true'
-  );
+export const UserItem = ({
+  userName,
+  tweets,
+  followers,
+  avatar,
+  id,
+  followingStatus,
+}) => {
+  const [isFollow, setIsFollow] = useState(followingStatus);
+  // localStorage.getItem(`isFollow_${id}`) === 'true'
   const [followersCount, setFollowersCount] = useState(parseInt(followers));
 
   const dispatch = useDispatch();
@@ -41,7 +47,7 @@ export const UserItem = ({ userName, tweets, followers, avatar, id }) => {
       editUser({
         id,
         followers: newFollowersCount,
-        userName,
+        followingStatus: true,
       })
     );
   };
@@ -54,14 +60,14 @@ export const UserItem = ({ userName, tweets, followers, avatar, id }) => {
       editUser({
         id,
         followers: newFollowersCount,
-        userName,
+        followingStatus: false,
       })
     );
   };
 
-  useEffect(() => {
-    localStorage.setItem(`isFollow_${id}`, isFollow);
-  }, [isFollow, id]);
+  // useEffect(() => {
+  //   localStorage.setItem(`isFollow_${id}`, isFollow);
+  // }, [isFollow, id]);
 
   return (
     <Item>
