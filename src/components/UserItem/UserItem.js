@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import {
-  FollowButton,
   FollowersStyled,
-  FollowingButton,
   Item,
   LogoImg,
   PictureImg,
@@ -18,6 +16,10 @@ import logo from 'images/logo.svg';
 import picture from 'images/picture.png';
 import { useDispatch } from 'react-redux';
 import { editUser } from 'redux/operations';
+import {
+  FollowButton,
+  FollowingButton,
+} from 'components/ButtonsStyle/Buttons.styled';
 
 export const UserItem = ({
   userName,
@@ -28,7 +30,6 @@ export const UserItem = ({
   followingStatus,
 }) => {
   const [isFollow, setIsFollow] = useState(followingStatus);
-  // localStorage.getItem(`isFollow_${id}`) === 'true'
   const [followersCount, setFollowersCount] = useState(parseInt(followers));
 
   const dispatch = useDispatch();
@@ -64,10 +65,6 @@ export const UserItem = ({
       })
     );
   };
-
-  // useEffect(() => {
-  //   localStorage.setItem(`isFollow_${id}`, isFollow);
-  // }, [isFollow, id]);
 
   return (
     <Item>

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background: linear-gradient(
     114.99deg,
-    #5f27e2 -0.99%,
-    #774ae0 54.28%,
-    #6c3dda 78.99%
+    #5f27e2 -1%,
+    #774ae0 54%,
+    #6c3dda 79%
   );
   background-repeat: no-repeat;
   background-attachment: fixed;

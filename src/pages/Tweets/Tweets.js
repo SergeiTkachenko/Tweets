@@ -1,6 +1,6 @@
+import { BackButton } from 'components/ButtonsStyle/Buttons.styled';
 import { UsersList } from 'components/UsersList/UsersList';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { BackButton } from './Tweets.styled';
 
 export default function Tweets() {
   const location = useLocation();

@@ -4,14 +4,17 @@ import styled from 'styled-components';
 export const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
 
-  margin-bottom: 20px;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  width: 196px;
+  height: 50px;
 
   padding: 10px 20px;
 
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 10px;
   color: black;
   background-color: #3bb4fa;
   text-transform: uppercase;
@@ -22,25 +25,15 @@ export const NavLinkStyled = styled(NavLink)`
 
   &.active {
     color: white;
-    background: linear-gradient(
-      114.99deg,
-      #471ca9 -0.99%,
-      #5736a3 54.28%,
-      #4b2a99 78.99%
-    );
-    box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+    background: linear-gradient(115deg, #471ca9 -1%, #5736a3 55%, #4b2a99 79%);
+    box-shadow: -2px 7px 20px rgba(0, 0, 0, 0.23);
   }
 
   &:hover,
   &:focus {
     color: white;
-    background: linear-gradient(
-      114.99deg,
-      #471ca9 -0.99%,
-      #5736a3 54.28%,
-      #4b2a99 78.99%
-    );
-    box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+    background: linear-gradient(115deg, #471ca9 -1%, #5736a3 55%, #4b2a99 79%);
+    box-shadow: -2px 7px 20px rgba(0, 0, 0, 0.23);
   }
 `;
 
