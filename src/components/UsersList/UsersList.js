@@ -13,7 +13,7 @@ import { LoadMoreButton } from 'components/ButtonsStyle/Buttons.styled';
 export const UsersList = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const [allUsers, setAllallUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [selectedOption, setSelectedOption] = useState('Show all');
 
   useEffect(() => {
@@ -23,8 +23,8 @@ export const UsersList = () => {
   const users = useSelector(selectFilteredUsers);
 
   useEffect(() => {
-    setAllallUsers(prevUsers => [...prevUsers, ...users]);
-  }, [users]);
+    setAllUsers(prevUsers => [...prevUsers, ...users]);
+  }, [users, allUsers]);
 
   function handleOptionChange(event) {
     const option = event.target.value;
