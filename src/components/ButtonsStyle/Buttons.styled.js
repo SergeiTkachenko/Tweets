@@ -81,6 +81,7 @@ export const LoadMoreButton = styled.button`
 export const BackButton = styled.button`
   padding: 14px 28px;
   margin: 12px auto 0 auto;
+  float: left;
   width: 196px;
   height: 50px;
   background: #ebd8ff;
@@ -104,5 +105,26 @@ export const BackButton = styled.button`
     color: white;
     border: none;
     background: linear-gradient(115deg, #471ca9 -1%, #5736a3 54%, #4b2a99 79%);
+  }
+`;
+
+export const ToTopButton = styled.button`
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  opacity: ${props => (props.visible ? 1 : 0)};
+  transition: opacity 0.3s ease-in-out;
+  z-index: 9999;
+
+  &:hover {
+    background-color: #283593;
   }
 `;

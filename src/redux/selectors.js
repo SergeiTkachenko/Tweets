@@ -7,14 +7,11 @@ export const selectFilter = state => state.filter;
 
 export const selectFilteredUsers = createSelector(
   [selectUsers, selectFilter],
-  (users, filterValue) => {
-    const filteredUsers = users.filter(user =>
-      user.user.toLowerCase().includes(filterValue.toLowerCase().trim())
-    );
+  users => {
+    const filteredUsers = [...users];
+    if (filteredUsers.length === 0) {
+      return filteredUsers;
+    }
     return filteredUsers.sort((a, b) => a.user.localeCompare(b.user));
   }
 );
-
-// export const selectSortedUsers = createSelector([selectUsers], users => {
-//   return users.sort((a, b) => a.user.localeCompare(b.user));
-// });

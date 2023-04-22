@@ -8,6 +8,7 @@ import Navigation from './Navigation/Navigation';
 import { Navigate } from 'react-router-dom';
 import { Container } from './Styles/Container';
 import { GlobalStyle } from './Styles/GlobalStyle';
+import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
 
 export const App = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -23,6 +24,8 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
+
+      <ScrollToTopButton />
 
       <GlobalStyle />
     </Container>

@@ -5,15 +5,19 @@ import { selectFilteredUsers } from 'redux/selectors';
 import { fetchUsers } from 'redux/operations';
 import {
   UsersListStyled,
-  SeleectStyled,
-  SeleectOptionStyled,
+  SelectStyled,
+  SelectOptionStyled,
 } from './UsersList.Styled';
 import { LoadMoreButton } from 'components/ButtonsStyle/Buttons.styled';
+
+const ITEMS_PER_PAGE_OPTIONS = [3, 6, 9];
+const DEFAULT_ITEMS_PER_PAGE = ITEMS_PER_PAGE_OPTIONS[0];
 
 export const UsersList = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [selectedOption, setSelectedOption] = useState('Show all');
+  const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -27,16 +31,22 @@ export const UsersList = () => {
     setPage(1);
   }
 
-  const itemsPerPage = 3;
+  function handleItemsPerPageChange(event) {
+    const newItemsPerPage = parseInt(event.target.value);
+    setItemsPerPage(newItemsPerPage);
+    setPage(1);
+  }
+
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  const filteredUsers =
-    selectedOption === 'Follow'
-      ? users.filter(user => user.followingStatus)
-      : selectedOption === 'Followings Show all'
-      ? users.filter(user => !user.followingStatus)
-      : users;
+  let filteredUsers = users;
+
+  if (selectedOption === 'Follow') {
+    filteredUsers = users.filter(user => user.followingStatus);
+  } else if (selectedOption === 'Followings Show all') {
+    filteredUsers = users.filter(user => !user.followingStatus);
+  }
 
   const visibleUsers = filteredUsers.slice(0, endIndex);
 
@@ -46,13 +56,24 @@ export const UsersList = () => {
 
   return (
     <div>
-      <SeleectStyled value={selectedOption} onChange={handleOptionChange}>
-        <SeleectOptionStyled value="Show all">Show all</SeleectOptionStyled>
-        <SeleectOptionStyled value="Follow">Follow</SeleectOptionStyled>
-        <SeleectOptionStyled value="Followings Show all">
-          Followings Show all
-        </SeleectOptionStyled>
-      </SeleectStyled>
+      <div>
+        <span>Show per page:</span>
+        <SelectStyled value={itemsPerPage} onChange={handleItemsPerPageChange}>
+          {ITEMS_PER_PAGE_OPTIONS.map(option => (
+            <SelectOptionStyled key={option} value={option}>
+              {option}
+            </SelectOptionStyled>
+          ))}
+        </SelectStyled>
+
+        <SelectStyled value={selectedOption} onChange={handleOptionChange}>
+          <SelectOptionStyled value="Show all">Show all</SelectOptionStyled>
+          <SelectOptionStyled value="Follow">Follow</SelectOptionStyled>
+          <SelectOptionStyled value="Followings Show all">
+            Followings Show all
+          </SelectOptionStyled>
+        </SelectStyled>
+      </div>
       <UsersListStyled>
         {visibleUsers.map(
           ({ id, user, followers, avatar, tweets, followingStatus }) => (

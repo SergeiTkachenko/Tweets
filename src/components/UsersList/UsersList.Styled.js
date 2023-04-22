@@ -8,10 +8,10 @@ export const UsersListStyled = styled.ul`
   gap: 36px;
 `;
 
-export const SeleectStyled = styled.select`
+export const SelectStyled = styled.select`
   padding: 14px 28px;
   margin: 12px 5px 12px 5px;
-  width: 196px;
+  width: 270px;
   height: 50px;
   background: #ebd8ff;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
@@ -22,6 +22,7 @@ export const SeleectStyled = styled.select`
   outline: none;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -39,6 +40,9 @@ export const SeleectStyled = styled.select`
   }
 `;
 
-export const SeleectOptionStyled = styled.option`
-  font-size: 16px;
+export const SelectOptionStyled = styled.option`
+  font-size: 14px;
+  text-align: center;
+  padding-left: 0;
+  text-indent: 0;
 `;
